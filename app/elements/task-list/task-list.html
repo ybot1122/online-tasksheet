@@ -23,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-datatable-column header="Task Title" property="title"></paper-datatable-column>
       <paper-datatable-column header="Note" property="note"></paper-datatable-column>
       <paper-datatable-column header="Status" property="status" sortable></paper-datatable-column>
+      <paper-datatable-column header="Assigned" property="assignees" sortable></paper-datatable-column>
     </paper-datatable>
   </template>
 
@@ -40,21 +41,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               title: 'Sample Task',
               note: 'Here are some notes about this task',
               status: 'IN PROGRESS',
-              assignees: ['Toby', 'Fred', 'Julia']
+              assignees: 'Percy'
             },
             {
               date: 22390489,
               title: 'Another Sample Task',
               note: 'Random notes about this task here',
               status: 'IN PROGRESS',
-              assignees: ['Toby', 'Fred', 'Julia']
+              assignees: 'Junter'
             },
             {
               date: 223904849,
               title: 'Some Task Here',
               note: '',
               status: 'DONE',
-              assignees: ['Toby', 'Fred', 'Julia']
+              assignees: 'Mackey'
             }]
           }
         },
