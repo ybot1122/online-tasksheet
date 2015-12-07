@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-datatable/paper-datatable.html">
 <link rel="import" href="../../bower_components/paper-datatable-column/paper-datatable-column.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
 <dom-module id="task-list">
   <template>
@@ -19,11 +20,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <paper-datatable data="{{data}}">
-      <paper-datatable-column header="Date" property="date" sortable></paper-datatable-column>
-      <paper-datatable-column header="Task Title" property="title"></paper-datatable-column>
-      <paper-datatable-column header="Note" property="note"></paper-datatable-column>
+      <paper-datatable-column header="Task Title" property="title" type="String" editable sortable></paper-datatable-column>
+      <paper-datatable-column header="Note" property="note" editable></paper-datatable-column>
       <paper-datatable-column header="Status" property="status" sortable></paper-datatable-column>
       <paper-datatable-column header="Assigned" property="assignees" sortable></paper-datatable-column>
+      <paper-datatable-column header="Hours Remaining" property="hours" type="Array" arrayDisplayProp>
+        <template>
+          <template is="dom-repeat" items="{{value}}" as="hours">
+            <div>Day <span>{{index}}</span>: <span>{{hours}}</span> hours remaining</div>
+          </template>
+        </template>
+      </paper-datatable-column>
     </paper-datatable>
   </template>
 
@@ -37,21 +44,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         properties: {
           data: {
             value: [{
-              date: 123404344,
               title: 'Sample Task',
               note: 'Here are some notes about this task',
               status: 'IN PROGRESS',
-              assignees: 'Percy'
+              assignees: 'Percy',
+              hours: [5, 4, 4, 3, 2]
             },
             {
-              date: 22390489,
               title: 'Another Sample Task',
               note: 'Random notes about this task here',
               status: 'IN PROGRESS',
-              assignees: 'Junter'
+              assignees: 'Junter',
+              hours: [10, 8, 4, 7, 0]
             },
             {
-              date: 223904849,
               title: 'Some Task Here',
               note: '',
               status: 'DONE',
