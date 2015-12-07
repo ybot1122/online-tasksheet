@@ -88,6 +88,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="mail"></iron-icon>
             <span>Contact</span>
           </a>
+
+          <a data-route="active-sprint" href="tasksheets/active">
+            <iron-icon icon="icons:assignment"></iron-icon>
+            <span>Current Sprint</span>
+          </a>
+
+          <a data-route="tasksheets" href="tasksheets">
+            <iron-icon icon="icons:assignment"></iron-icon>
+            <span>Sprint Archive</span>
+          </a>
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -112,7 +122,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="bottom bottom-container center horizontal layout">
             <div class="bottom-title paper-font-subhead">The future of the web today</div>
           </div>
-
         </paper-toolbar>
 
         <!-- Main Content -->
@@ -175,6 +184,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-material elevation="1">
                 <h2 class="page-title">Contact</h2>
                 <p>This is the contact section</p>
+              </paper-material>
+            </section>
+
+            <section data-route="tasksheets">
+              <paper-material elevation="1">
+                <h2 class="page-title">Tasksheets</h2>
+                <a href$="{{baseUrl}}tasksheets/active">View Active Sprint</a><br>
+                <a href$="{{baseUrl}}tasksheets/1234">Sprint 1234</a>
+              </paper-material>
+            </section>
+
+            <section data-route="active-sprint">
+              <paper-material elevation="1">
+                <h2 class="page-title">Active Sprint</h2>
+                <p class="paper-font-subhead">December 6, 2012 to December 20, 2012</p>
+                <p class="paper-font-subhead">Committed to 20 Story Points</p>
+              </paper-material>
+
+              <paper-material elevation="1">
+                <h3>User Story 61: Activity Page Header</h3>
+              </paper-material>
+              <paper-material elevation="1">
+                <h3>User Story 62: Activity Page Footer</h3>
+              </paper-material>
+              <paper-material elevation="1">
+                <h3>User Story 65: Activity Page Left-Side Content</h3>
               </paper-material>
             </section>
 
