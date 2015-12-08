@@ -11,23 +11,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-datatable/paper-datatable.html">
 <link rel="import" href="../../bower_components/paper-datatable-column/paper-datatable-column.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
 
 <dom-module id="task-list">
-  <template>
+  <template id="app">
     <style>
       :host {
         display: block;
       }
     </style>
     <paper-datatable data="{{data}}">
-      <paper-datatable-column header="Task Title" property="title" type="String" editable sortable></paper-datatable-column>
-      <paper-datatable-column header="Note" property="note" editable></paper-datatable-column>
-      <paper-datatable-column header="Status" property="status" sortable></paper-datatable-column>
+      <paper-datatable-column header="Task Title" property="title" type="String" editable sortable dialog></paper-datatable-column>
+      <paper-datatable-column header="Note" property="note" type="String" editable dialog></paper-datatable-column>
+      <paper-datatable-column header="Status" property="status" format-value="{{getStatus}}" sortable editable dialog>
+        <template>
+          <paper-listbox selected="{{value}}">
+            <paper-item>Not Started</paper-item>
+            <paper-item>In Progress</paper-item>
+            <paper-item>Done</paper-item>
+          </paper-listbox>
+        </template>
+      </paper-datatable-column>
       <paper-datatable-column header="Assigned" property="assignees" sortable></paper-datatable-column>
       <paper-datatable-column header="Hours Remaining" property="hours" type="Array" arrayDisplayProp>
         <template>
           <template is="dom-repeat" items="{{value}}" as="hours">
-            <div>Day <span>{{index}}</span>: <span>{{hours}}</span> hours remaining</div>
+            <span>Day <span>{{index}}</span>: <span>{{hours}}</span> hours remaining</span>
           </template>
         </template>
       </paper-datatable-column>
@@ -46,29 +56,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: [{
               title: 'Sample Task',
               note: 'Here are some notes about this task',
-              status: 'IN PROGRESS',
+              status: 0,
               assignees: 'Percy',
               hours: [5, 4, 4, 3, 2]
             },
             {
               title: 'Another Sample Task',
               note: 'Random notes about this task here',
-              status: 'IN PROGRESS',
+              status: 1,
               assignees: 'Junter',
               hours: [10, 8, 4, 7, 0]
             },
             {
               title: 'Some Task Here',
               note: '',
-              status: 'DONE',
+              status: 2,
               assignees: 'Mackey'
             }]
           }
         },
 
         ready: function() {
-          console.log(this.data);
+          this.getStatus = function(ind) {
+            var states = ['Not Started', 'In Progress', 'Done'];
+            return states[ind];
+          }
         }
+
       });
     })();
   </script>
